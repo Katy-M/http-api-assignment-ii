@@ -15,9 +15,9 @@
   "author": "Katy Mollenkopf",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/Katy-M/http-api-assignment/issues"
+    "url": "https://github.com/Katy-M/http-api-assignment-ii/issues"
   },
-  "homepage": "https://github.com/Katy-M/http-api-assignment#readme",
+  "homepage": "https://github.com/Katy-M/http-api-assignment-ii#readme",
   "devDependencies": {
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
