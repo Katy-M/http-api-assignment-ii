@@ -7,15 +7,16 @@ const jsonHandler = require('./jsonHandler.js');
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
-  'GET': {
+  GET: {
     '/': htmlHandler.getIndex,
-    '/style.css': htmlHandler.getCSS,
+    '/style.css': htmlHandler.getStylesheet,
+    '/getUsers': jsonHandler.getUsers,
     notFound: jsonHandler.notFound,
   },
-  'HEAD': {
+  HEAD: {
 
   },
-  'POST': {
+  POST: {
 
   },
 };
