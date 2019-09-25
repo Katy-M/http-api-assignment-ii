@@ -11,13 +11,16 @@ const urlStruct = {
     '/': htmlHandler.getIndex,
     '/style.css': htmlHandler.getStylesheet,
     '/getUsers': jsonHandler.getUsers,
+    '/notReal': jsonHandler.notFound,
     notFound: jsonHandler.notFound,
   },
   HEAD: {
-
+    '/getUsers': jsonHandler.getUsersMeta,
+    '/notReal': jsonHandler.notFoundMeta,
+    notFound: jsonHandler.getUsersMeta,
   },
   POST: {
-
+    '/addUser': jsonHandler.addUser,
   },
 };
 const onRequest = (request, response) => {

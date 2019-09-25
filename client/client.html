@@ -15,6 +15,9 @@
         case 201: //if created
           content.innerHTML = '<b>Create</b>';
           break;
+        case 204: //if updated
+          content.innerHTML = '<b>Update</b>';
+          break;
         case 400: //if bad request
           content.innerHTML = `<b>Bad Request</b>`;
           break;
@@ -28,9 +31,7 @@
       
       //if we are expecting a response body (not in a head request)
       if(parseResponse) {
-        // parse the object and print it to the console
         const obj = JSON.parse(xhr.response);
-        // print the raw JSON to the screen
         content.innerHTML += `<p>${xhr.response}</p>`;
       } else { 
         //if not parsing a response, just alert that meta data was recieved
@@ -54,14 +55,16 @@
       //from first to last. You only need to send one
       //but you can send many, separated by commas.
       xhr.setRequestHeader('Accept', 'application/json');
-      //if get request or head request
+
       if(method == 'get') {
         //set onload to parse request and get json message
         xhr.onload = () => handleResponse(xhr, true);
-      } else {
+      } else if (method == 'head' {
         //set onload to check meta data and NOT message
-        //There are no body responses in a head request
         xhr.onload = () => handleResponse(xhr, false);
+      } else {
+        // post request
+
       }
       
       //send ajax request
@@ -76,7 +79,10 @@
     const init = () => {
       const userForm = document.querySelector('#userForm');
       const getUsers = (e) => requestUpdate(e, userForm);
+      const getNotReal = (e) => requestUpdate(e, userForm);
+
       userForm.addEventListener('submit', getUsers);
+      userForm.addEventListener('submit', getNotReal);
     };
 
     window.onload = init;

@@ -48,20 +48,21 @@ const getUsersMeta = (request, response) => {
   respondJSONMeta(request, response, 200);
 };
 
-// function just to update our object
-const updateUser = (request, response) => {
+const addUser = (request, response) => {
   const newUser = {
     createdAt: Date.now(),
   };
 
-  // modifying our dummy object
-  // just indexing by time for now
-  users[newUser.createdAt] = newUser;
+  if (users[newUser.createdAt]) {
+    users[newUser.createdAt] = newUser;
 
-  // return a 201 created status
+    // return a 204 updated status
+    return respondJSON(request, response, 204, newUser);
+  }
+  // create the new user and return 201 status
+  users[newUser.createdAt] = newUser;
   return respondJSON(request, response, 201, newUser);
 };
-
 
 // function for 404 not found without message
 const notFoundMeta = (request, response) => {
@@ -71,7 +72,7 @@ const notFoundMeta = (request, response) => {
 module.exports = {
   getUsers,
   getUsersMeta,
-  updateUser,
+  addUser,
   notFound,
   notFoundMeta,
 };
