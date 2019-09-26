@@ -48,19 +48,27 @@ const getUsersMeta = (request, response) => {
   respondJSONMeta(request, response, 200);
 };
 
-const addUser = (request, response) => {
+const addUser = (request, response, body) => {
+  // make sure a name and age are included, else send a bad request
+  if (!body.name || !body.age) {
+    const responseJSON = {
+      message: 'You must provide both a name and an age.',
+      id: 'badRequest',
+    };
+    return respondJSON(request, response, 400, responseJSON);
+  }
   const newUser = {
-    createdAt: Date.now(),
+    name: body.name,
+    age: body.age,
   };
 
-  if (users[newUser.createdAt]) {
-    users[newUser.createdAt] = newUser;
-
+  if (users[newUser.name]) {
+    users[newUser.name] = newUser;
     // return a 204 updated status
     return respondJSON(request, response, 204, newUser);
   }
   // create the new user and return 201 status
-  users[newUser.createdAt] = newUser;
+  users[newUser.name] = newUser;
   return respondJSON(request, response, 201, newUser);
 };
 
